@@ -1,6 +1,4 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab4 - Entity Component System.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Dot.cpp
-  LTexture.cpp
+﻿  Game.cpp
+  main.cpp
   Generating Code...
-C:\Users\Sean\Desktop\Online Tech\Project 1\Lab4 - Entity Component System\Dot.cpp(166,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Lab4 - Entity Component System.vcxproj -> C:\Users\Sean\Desktop\Online Tech\Project 1\Debug\Project 1 - Online Tech.exe
+  Lab4 - Entity Component System.vcxproj -> C:\Users\gameuser\Desktop\Project1OnlineTech\Project 1\Debug\Project 1 - Online Tech.exe

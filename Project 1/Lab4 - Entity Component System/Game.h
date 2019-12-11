@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include "Dot.h"
-#include "LTexture.h"
 
 //@Author Sean Nash
 //@Login C00217019
@@ -44,6 +43,8 @@ private:
 
 
 	std::string getErrorString(std::string t_errorMsg);
+	Dot m_player;
+	Dot m_player2;
 
 
 };

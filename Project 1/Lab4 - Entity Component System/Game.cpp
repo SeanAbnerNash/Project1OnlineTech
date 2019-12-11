@@ -8,7 +8,10 @@
 #define WIDTH 700
 #define HEIGHT 500
 
-Game::Game()
+Game::Game():
+m_player(false),
+m_player2(true)
+
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)//Initializes all SDL's modules
 	{
