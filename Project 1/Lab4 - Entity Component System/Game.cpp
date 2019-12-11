@@ -20,6 +20,7 @@ m_player2(true)
 	}
 	else
 	{
+		
 		// create window
 		m_window = SDL_CreateWindow("Project One", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, NULL);
 		if (!m_window)
@@ -41,6 +42,9 @@ m_player2(true)
 		{
 			std::cout << getErrorString("Error Loading Texture") << std::endl;
 		}
+		m_player.Init(m_renderer);
+		m_player2.Init(m_renderer);
+		m_player2.SetPosition(50, 50);
 		m_currentKey = NULL;
 	}
 
@@ -68,6 +72,10 @@ void Game::processEvents()
 	SDL_Event event;
 	SDL_PollEvent(&event);
 
+
+	m_player.handleEvent(event);
+	m_player2.handleEvent(event);
+
 	switch (event.type)
 	{
 	case SDL_QUIT:
@@ -90,13 +98,16 @@ void Game::processEvents()
 #include <vector>
 void Game::update()
 {
-
+	m_player.update(HEIGHT, WIDTH);
+	m_player2.update(HEIGHT, WIDTH);
 
 }
 
 void Game::render()
 {
 	SDL_RenderClear(m_renderer);
+	m_player.render(m_renderer);
+	m_player2.render(m_renderer);
 	SDL_RenderPresent(m_renderer);
 }
 

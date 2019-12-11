@@ -1,4 +1,6 @@
-﻿  Game.cpp
-  main.cpp
-  Generating Code...
+﻿  Dot.cpp
+C:\Users\gameuser\Desktop\Project1OnlineTech\Project 1\Lab4 - Entity Component System\Dot.cpp(182,35): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gameuser\Desktop\Project1OnlineTech\Project 1\Lab4 - Entity Component System\Dot.cpp(182,26): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\gameuser\Desktop\Project1OnlineTech\Project 1\Lab4 - Entity Component System\Dot.cpp(192,17): warning C4244:  'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\gameuser\Desktop\Project1OnlineTech\Project 1\Lab4 - Entity Component System\Dot.cpp(197,17): warning C4244:  'return': conversion from 'float' to 'int', possible loss of data
   Lab4 - Entity Component System.vcxproj -> C:\Users\gameuser\Desktop\Project1OnlineTech\Project 1\Debug\Project 1 - Online Tech.exe
