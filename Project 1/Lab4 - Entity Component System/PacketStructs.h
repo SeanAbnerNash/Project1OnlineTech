@@ -1,4 +1,10 @@
 #pragma once
+
+//@Author Sean Nash & Oisin Wilson
+//@Login C00217019 & C00213826
+//Project 1
+//Time Taken 8 Hours.	
+
 #include "PacketType.h"
 #include "Packet.h"
 #include "FileTransferData.h" //for FileTransferData::buffersize

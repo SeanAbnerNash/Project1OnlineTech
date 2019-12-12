@@ -1,9 +1,7 @@
 #include <iostream>
 #include "Game.h"
-//@Author Sean Nash
-//@Login C00217019
-//Lab 4 - Engineering  - Entity Component System
-// With Help From Cathal and Przemek
+//@Author Sean Nash & Oisin Wilson
+//@Login C00217019 & C00213826
 //Time Taken 8 Hours.
 
 

@@ -1,4 +1,5 @@
 #pragma once
+
 #include <fstream> //for std::ifstream and std::ofstream
 struct FileTransferData
 {

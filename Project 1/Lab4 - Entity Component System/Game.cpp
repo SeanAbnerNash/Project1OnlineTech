@@ -1,9 +1,9 @@
 #include "Game.h"
 
-//@Author Sean Nash
-//@Login C00217019
-//Lab 4 - Engineering  - Entity Component System
-//Time Taken 8 Hours.
+//@Author Sean Nash & Oisin Wilson
+//@Login C00217019 & C00213826
+//Project 1
+//Time Taken 8 Hours.	
 
 #define WIDTH 700
 #define HEIGHT 500
