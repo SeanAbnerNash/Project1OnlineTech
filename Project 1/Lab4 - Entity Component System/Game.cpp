@@ -49,8 +49,6 @@ m_player2(true)
 		m_currentKey = NULL;
 	}
 
-
-
 }
 
 Game::~Game()
@@ -58,12 +56,28 @@ Game::~Game()
 	cleanup();
 }
 
-void Game::run()
+void Game::run(Client& t_client)
 {
+	double frameTime = 0.0;
+	double dt = 0.0;
+	double currentTime = SDL_GetTicks();
+
+
 	while (isRunning)
 	{
-		processEvents();
-		update();
+		dt = SDL_GetTicks() - currentTime;
+		currentTime = SDL_GetTicks();
+		frameTime += dt;
+
+		while (frameTime > 1.0f / 60.0f)
+		{
+			//std::getline(std::cin, userinput); //Get line if user presses enter and fill the buffer
+			//t_client.SendString(userinput); //Send string to server
+
+			processEvents();
+			update();
+			frameTime -= 1.0 / 60.0;
+		}
 		render();
 	}
 }

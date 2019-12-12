@@ -1,8 +1,10 @@
-﻿  Dot.cpp
-C:\Users\Sean\Desktop\Project1OnlineTech\Project 1\Lab4 - Entity Component System\Dot.cpp(199,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Sean\Desktop\Project1OnlineTech\Project 1\Lab4 - Entity Component System\Dot.cpp(199,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Sean\Desktop\Project1OnlineTech\Project 1\Lab4 - Entity Component System\Dot.cpp(209,17): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+﻿  Client.cpp
+  ClientIni.cpp
+  Game.cpp
   main.cpp
+  Packet.cpp
+  PacketManager.cpp
+  PacketStructs.cpp
+  SendGetMethods.cpp
   Generating Code...
-C:\Users\Sean\Desktop\Project1OnlineTech\Project 1\Lab4 - Entity Component System\Dot.cpp(214,17): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  Lab4 - Entity Component System.vcxproj -> C:\Users\Sean\Desktop\Project1OnlineTech\Project 1\Debug\Project 1 - Online Tech.exe
+  Lab4 - Entity Component System.vcxproj -> C:\Users\Recycled Sloth\Desktop\sEAn\Project1OnlineTech-master (1)\Project1OnlineTech-master\Project 1\Debug\Project 1 - Online Tech.exe

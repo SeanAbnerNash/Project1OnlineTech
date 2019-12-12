@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include "Dot.h"
+#include "Client.h"
+
 
 //@Author Sean Nash
 //@Login C00217019
@@ -18,7 +20,7 @@ public:
 	Game();
 	~Game();
 
-	void run();
+	void run(Client& t_client);
 
 private:
 	void processEvents();
@@ -28,7 +30,7 @@ private:
 	void endGame();
 
 
-
+	std::string userinput; //holds the user's chat message
 
 
 
