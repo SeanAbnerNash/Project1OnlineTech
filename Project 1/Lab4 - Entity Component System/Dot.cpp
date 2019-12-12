@@ -18,8 +18,8 @@ Dot::Dot(bool chaser)
 		gDotTexture.setColor(66, 69, 244);
 	}
 
-	width = 10;
-	height = 10;
+	width = 50;
+	height = 50;
 	m_centre.set((m_pos.x + (width / 2)), (m_pos.y + (height / 2)));
 }
 
@@ -38,6 +38,22 @@ void Dot::SetPosition(float x, float y)
 float Dot::length(float t_x, float t_y)
 {
 	return sqrt((t_x * t_x) + (t_y * t_y));
+}
+
+Vector2 Dot::getPos()
+{
+	return m_pos;
+}
+
+Vector2 Dot::getCentre()
+{
+	return m_centre;
+}
+
+
+void Dot::setLocal(bool t_local)
+{
+	isLocalplayer = t_local;
 }
 
 //"dot.bmp"
@@ -117,13 +133,14 @@ void Dot::handleEvent(SDL_Event& e)
 	}
 }
 
-void Dot::update(int SCREEN_HEIGHT, int SCREEN_WIDTH)
+void Dot::update(int SCREEN_HEIGHT, int SCREEN_WIDTH, Vector2 t_otherPos)
 {
 	m_velocity.x = m_velocity.x * 0.99f;
 	m_velocity.y = m_velocity.y * 0.99f;
 	handleInput();
 	//Move the dot left or right
 	m_pos.x += m_velocity.x;
+	Checkcollision(t_otherPos);
 
 	//If the dot went too far to the left or right
 	if ((m_pos.x < 0) || (m_pos.x + DOT_WIDTH > SCREEN_WIDTH))
@@ -197,13 +214,15 @@ int Dot::GetCenterY()
 	return m_centre.y;
 }
 
-bool Dot::Checkcollision(int centerX, int centerY)
+bool Dot::Checkcollision(Vector2 t_otherPos)
 {
-	float distance = sqrt(((m_centre.x - centerX) * (m_centre.x - centerX)) + ((m_centre.y - centerY) * (m_centre.y - centerY)));
+	float distance = sqrt(((m_centre.x - t_otherPos.x) * (m_centre.x - t_otherPos.x)) + ((m_centre.y - t_otherPos.y) * (m_centre.y - t_otherPos.y)));
 	
+	//std::cout << " Distance: " << distance << std::endl;
+
 	if (distance <= width)
 	{
-		return true;
+		return true;	
 	}
 	else
 	{

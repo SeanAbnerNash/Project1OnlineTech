@@ -25,6 +25,12 @@ private:
 	void update();
 	void render();
 	void cleanup();
+	void endGame();
+
+
+
+
+
 
 	// window used in the program
 	SDL_Window* m_window;
@@ -38,6 +44,7 @@ private:
 
 	// if game loop is happening
 	bool isRunning;
+	bool m_anyInput{ false };
 
 	SDL_Keycode m_currentKey;//The Current Key Pressed for input
 
@@ -45,6 +52,8 @@ private:
 	std::string getErrorString(std::string t_errorMsg);
 	Dot m_player;
 	Dot m_player2;
+
+	int m_gameState = 1; //0 Is Server Set up, 1 is Playing, 2 is Victory.
 
 
 };

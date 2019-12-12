@@ -25,7 +25,7 @@ public:
 	void handleEvent(SDL_Event& e);
 
 	//Moves the dot
-	void update(int SCREEN_HEIGHT, int SCREEN_WIDTH);
+	void update(int SCREEN_HEIGHT, int SCREEN_WIDTH, Vector2 t_otherPos);
 	void handleInput();
 	void constrainSpeeds();
 
@@ -34,7 +34,7 @@ public:
 
 	std::string GetPosAsString();
 
-	bool Checkcollision(int centerX, int centerY);
+	bool Checkcollision(Vector2 t_otherPos);
 
 	bool GetLocal() { return isLocalplayer; };
 
@@ -43,6 +43,10 @@ public:
 
 	void SetPosition(float x, float y);
 	float length(float t_x, float t_y);
+	Vector2 getPos();
+	Vector2 getCentre();
+	void reset();
+	void setLocal(bool t_local);
 
 private:
 	bool isLocalplayer;
@@ -60,6 +64,7 @@ private:
 	bool m_movingDown{ false };
 	bool m_movingLeft{ false };
 	bool m_movingRight{ false };
+
 
 
 	LTexture gDotTexture;

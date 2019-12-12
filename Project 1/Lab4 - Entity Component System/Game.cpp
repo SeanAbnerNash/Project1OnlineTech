@@ -44,6 +44,7 @@ m_player2(true)
 		}
 		m_player.Init(m_renderer);
 		m_player2.Init(m_renderer);
+		m_player.setLocal(true);
 		m_player2.SetPosition(50, 50);
 		m_currentKey = NULL;
 	}
@@ -98,16 +99,41 @@ void Game::processEvents()
 #include <vector>
 void Game::update()
 {
-	m_player.update(HEIGHT, WIDTH);
-	m_player2.update(HEIGHT, WIDTH);
+	switch (m_gameState) {
+	case 0 :
+
+	case 1 :
+		m_player.update(HEIGHT, WIDTH, m_player2.getCentre());
+		m_player2.update(HEIGHT, WIDTH, m_player.getCentre());
+		if (m_player.GetLocal())
+		{
+			if (m_player.Checkcollision(m_player2.getCentre()))
+			{
+				m_gameState = 2;
+			}
+		}
+
+	case 2 :
+		endGame();
+	}
+
 
 }
 
 void Game::render()
 {
 	SDL_RenderClear(m_renderer);
-	m_player.render(m_renderer);
-	m_player2.render(m_renderer);
+	switch (m_gameState) {
+	case 0:
+
+	case 1:
+		m_player.render(m_renderer);
+		m_player2.render(m_renderer);
+
+	case 2:
+		endGame();
+	}
+
 	SDL_RenderPresent(m_renderer);
 }
 
@@ -117,6 +143,10 @@ void Game::cleanup()
 	SDL_DestroyWindow(m_window);
 	SDL_DestroyRenderer(m_renderer);
 	SDL_QUIT;
+}
+
+void Game::endGame()
+{
 }
 
 
