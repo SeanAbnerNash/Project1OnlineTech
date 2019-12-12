@@ -45,7 +45,8 @@ m_player2(true)
 		m_player.Init(m_renderer);
 		m_player2.Init(m_renderer);
 		m_player.setLocal(true);
-		m_player2.SetPosition(50, 50);
+		m_player.SetPosition(200, 250);
+		m_player2.SetPosition(400, 250);
 		m_currentKey = NULL;
 	}
 
@@ -61,6 +62,7 @@ void Game::run(Client& t_client)
 	double frameTime = 0.0;
 	double dt = 0.0;
 	double currentTime = SDL_GetTicks();
+	start = SDL_GetTicks();
 
 
 	while (isRunning)
@@ -86,10 +88,21 @@ void Game::processEvents()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
+	switch (m_gameState)
+	{
+	case 0:
+		break;
+	case 1:
+		m_player.handleEvent(event);
+		m_player2.handleEvent(event);
+		break;
+	case 2:
+		if (event.type == SDL_KEYDOWN) {
+			m_anyInput = true;
+		}
+		break;
+	}
 
-
-	m_player.handleEvent(event);
-	m_player2.handleEvent(event);
 
 	switch (event.type)
 	{
@@ -124,6 +137,7 @@ void Game::update()
 			if (m_player.Checkcollision(m_player2.getCentre()))
 			{
 				m_gameState = 2;
+				m_showEnd = true;
 			}
 		}
 
@@ -145,7 +159,8 @@ void Game::render()
 		m_player2.render(m_renderer);
 
 	case 2:
-		endGame();
+		m_player.render(m_renderer);
+		m_player2.render(m_renderer);
 	}
 
 	SDL_RenderPresent(m_renderer);
@@ -161,6 +176,30 @@ void Game::cleanup()
 
 void Game::endGame()
 {
+	if (m_showEnd == true)
+	{
+		std::cout << "GAME OVER" << std::endl;
+		float survivalTime = SDL_GetTicks() - start;
+		survivalTime = survivalTime / 1000;
+		std::cout << "It Took  " << survivalTime << " for the Chaser to catch up. " << std::endl;
+		m_showEnd = false;
+	}
+	if (m_anyInput)
+	{
+		reset();
+	}
+}
+
+void Game::reset()
+{
+	m_gameState = 1;
+	m_anyInput = false ;
+	m_showEnd =  false ;
+	start = SDL_GetTicks();
+	m_player.SetPosition(200, 250);
+	m_player2.SetPosition(400, 250);
+	m_player.reset();
+	m_player2.reset();
 }
 
 

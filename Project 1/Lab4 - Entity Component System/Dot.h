@@ -12,7 +12,7 @@ public:
 	static const int DOT_HEIGHT = 20;
 
 	//Maximum axis velocity of the dot
-	static const int DOT_VEL = 10;
+	static const int DOT_VEL = 1;
 	static const int MAX_VEL = 15;
 
 
@@ -64,8 +64,13 @@ private:
 	bool m_movingDown{ false };
 	bool m_movingLeft{ false };
 	bool m_movingRight{ false };
+	bool m_sprinting{ false };
 
-
+	float m_maxSprint{ 12 };
+	float m_sprintBonus{ 0 };
+	int m_maxCoolDown{ 90 };
+	int m_tickTimer{ 0 };
+	bool m_sprintOnCD{ false };
 
 	LTexture gDotTexture;
 };

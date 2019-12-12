@@ -50,6 +50,21 @@ Vector2 Dot::getCentre()
 	return m_centre;
 }
 
+void Dot::reset()
+{
+	m_velocity.set(0.0f, 0.0f);
+	m_centre.set((m_pos.x + (width / 2)), (m_pos.y + (height / 2)));
+	m_movingDown = false;
+	m_movingLeft = false;
+	m_movingRight = false;
+	m_movingUp = false;
+	m_sprinting = false;
+	m_tickTimer = 0;
+	m_sprintOnCD = false;
+	m_sprintBonus = 0;
+
+}
+
 
 void Dot::setLocal(bool t_local)
 {
@@ -88,6 +103,12 @@ void Dot::handleEvent(SDL_Event& e)
 			case SDLK_s: m_movingDown = true; break;
 			case SDLK_a: m_movingLeft = true; break;
 			case SDLK_d: m_movingRight = true; break;
+			case SDLK_LSHIFT:
+				if (!m_sprintOnCD)
+				{
+					m_sprinting = true;
+				} break;
+			
 			}
 		}
 		//If a key was released
@@ -115,6 +136,11 @@ void Dot::handleEvent(SDL_Event& e)
 			case SDLK_DOWN: m_movingDown = true; break;
 			case SDLK_LEFT: m_movingLeft = true; break;
 			case SDLK_RIGHT: m_movingRight = true; break;
+			case SDLK_LSHIFT: 
+				if (!m_sprintOnCD)
+				{
+					m_sprinting = true;
+				} break;
 			}
 		}
 		//If a key was released
@@ -135,8 +161,8 @@ void Dot::handleEvent(SDL_Event& e)
 
 void Dot::update(int SCREEN_HEIGHT, int SCREEN_WIDTH, Vector2 t_otherPos)
 {
-	m_velocity.x = m_velocity.x * 0.99f;
-	m_velocity.y = m_velocity.y * 0.99f;
+	m_velocity.x = m_velocity.x * 0.95f;
+	m_velocity.y = m_velocity.y * 0.95f;
 	handleInput();
 	//Move the dot left or right
 	m_pos.x += m_velocity.x;
@@ -163,27 +189,61 @@ void Dot::update(int SCREEN_HEIGHT, int SCREEN_WIDTH, Vector2 t_otherPos)
 
 	m_centre.x = m_pos.x + (width / 2);
 	m_centre.y = m_pos.y + (height / 2);
+	if (m_sprintOnCD)
+	{
+		m_tickTimer--;
+		if (m_sprintBonus > 0)
+		{
+			m_sprintBonus -= 2;
+		}
+		if (m_sprintBonus < 0)
+		{
+			m_sprintBonus = 0;
+		}
+	}
+	if (m_tickTimer <= 0 && m_sprintOnCD)
+	{
+		m_tickTimer = 0;
+		m_sprintOnCD = false;
+	}
 }
 
 void Dot::handleInput()
 {
+	if (m_sprinting)
+	{
+		m_sprinting = false;
+		m_sprintOnCD = true;
+		m_tickTimer = m_maxCoolDown;
+		m_sprintBonus = m_maxSprint;
+	}
+
 	if (m_movingDown)
 	{
-		m_velocity.y = (DOT_VEL / 90.0f);
+		m_velocity.y = (DOT_VEL / 120.0f);
+		m_velocity.y += m_sprintBonus;
+		
+
 	}
 	else if (m_movingUp)
 	{
-		m_velocity.y = -(DOT_VEL / 90.0f);
+		m_velocity.y = -(DOT_VEL / 120.0);
+		m_velocity.y += -m_sprintBonus;
 	}
 
 	if (m_movingRight)
 	{
-		m_velocity.x = (DOT_VEL / 90.0f);
+		m_velocity.x = (DOT_VEL / 120.0f);
+		m_velocity.x += m_sprintBonus;
 	}
 	else if (m_movingLeft)
 	{
-		m_velocity.x = -(DOT_VEL / 90.0f);
+		m_velocity.x = -(DOT_VEL / 120.0f);
+		m_velocity.x += -m_sprintBonus;
 	}
+
+
+
 	
 
 }

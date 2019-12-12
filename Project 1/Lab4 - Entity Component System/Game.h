@@ -7,10 +7,10 @@
 #include "Client.h"
 
 
-//@Author Sean Nash
+//@Author Sean Nash & Oisin Wilson
 //@Login C00217019
-//Lab 4 - Engineering  - Entity Component System
-//Time Taken 8 Hours.
+//Project 1
+//Time Taken 8 Hours.	
 
 
 class Game
@@ -28,6 +28,7 @@ private:
 	void render();
 	void cleanup();
 	void endGame();
+	void reset();
 
 
 	std::string userinput; //holds the user's chat message
@@ -47,6 +48,7 @@ private:
 	// if game loop is happening
 	bool isRunning;
 	bool m_anyInput{ false };
+	bool m_showEnd{ false };
 
 	SDL_Keycode m_currentKey;//The Current Key Pressed for input
 
@@ -54,6 +56,12 @@ private:
 	std::string getErrorString(std::string t_errorMsg);
 	Dot m_player;
 	Dot m_player2;
+
+	//The timer starting time
+	float  start = 0;
+
+	//The timer start/stop flag
+	bool running = true;
 
 	int m_gameState = 1; //0 Is Server Set up, 1 is Playing, 2 is Victory.
 
